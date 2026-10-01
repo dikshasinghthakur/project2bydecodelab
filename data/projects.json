@@ -1,0 +1,82 @@
+[
+  {
+    "id": "proj-1790872509071",
+    "title": "skill exchange platform",
+    "owner": "Diksha Singh Thakur",
+    "status": "In Progress",
+    "priority": "High",
+    "budget": 1500,
+    "progress": 50,
+    "description": "this project deals with exchange of the skills through the barter system in which different skills type of people teach each other their skills and improve their profile and chances of getting high paid job."
+  },
+  {
+    "id": "proj-1790872178062",
+    "title": "Success Banner Test",
+    "owner": "Demo User",
+    "status": "Planning",
+    "priority": "Low",
+    "budget": 500,
+    "progress": 40,
+    "description": "Banner verification"
+  },
+  {
+    "id": "proj-1790872153749",
+    "title": "Success Message Test",
+    "owner": "User",
+    "status": "Completed",
+    "priority": "High",
+    "budget": 7500,
+    "progress": 100,
+    "description": "Testing success notification"
+  },
+  {
+    "id": "proj-1790871753142",
+    "title": "Browser Form Test",
+    "owner": "Form User",
+    "status": "Planning",
+    "priority": "Low",
+    "budget": 6600,
+    "progress": 55,
+    "description": "Submittable from UI"
+  },
+  {
+    "id": "proj-1790871746993",
+    "title": "Test Project",
+    "owner": "Tester",
+    "status": "In Progress",
+    "priority": "High",
+    "budget": 5000,
+    "progress": 60,
+    "description": "Created from browser test"
+  },
+  {
+    "id": "proj-1001",
+    "title": "Launch Dashboard",
+    "owner": "Aisha",
+    "status": "In Progress",
+    "priority": "High",
+    "budget": 2400,
+    "progress": 72,
+    "description": "Core monitoring analytics for the customer portal."
+  },
+  {
+    "id": "proj-1002",
+    "title": "Client Portal",
+    "owner": "Rahul",
+    "status": "Planning",
+    "priority": "Medium",
+    "budget": 1800,
+    "progress": 30,
+    "description": "User-facing portal for subscriptions and account activity."
+  },
+  {
+    "id": "proj-1003",
+    "title": "API Reliability",
+    "owner": "Nina",
+    "status": "Completed",
+    "priority": "High",
+    "budget": 3100,
+    "progress": 100,
+    "description": "Performance monitoring and endpoint reliability improvements."
+  }
+]

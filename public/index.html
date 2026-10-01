@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Full Stack Project 2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <div class="brand-mark">F</div>
+          <h1>Full Stack Project 2</h1>
+        </div>
+        <div class="status-pill" id="api-status">Checking API...</div>
+      </header>
+
+      <main class="content-grid">
+        <aside class="panel sidebar-panel">
+          <h2>Project Snapshot</h2>
+          <div class="metric-grid">
+            <div class="metric-card">
+              <span>Total Projects</span>
+              <strong id="total-projects">0</strong>
+            </div>
+            <div class="metric-card">
+              <span>In Progress</span>
+              <strong id="in-progress">0</strong>
+            </div>
+            <div class="metric-card">
+              <span>Completed</span>
+              <strong id="completed-projects">0</strong>
+            </div>
+            <div class="metric-card">
+              <span>Budget</span>
+              <strong id="total-budget">$0</strong>
+            </div>
+          </div>
+
+          <div class="form-panel">
+            <h3>Add New Project</h3>
+            <div id="form-message" class="form-message" aria-live="polite"></div>
+            <form id="project-form">
+              <label>
+                <span>Project Title</span>
+                <input type="text" name="title" placeholder="Enter project title" required />
+              </label>
+              <label>
+                <span>Owner</span>
+                <input type="text" name="owner" placeholder="Project owner" required />
+              </label>
+              <div class="two-col">
+                <label>
+                  <span>Status</span>
+                  <select name="status">
+                    <option>Planning</option>
+                    <option>In Progress</option>
+                    <option>Completed</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Priority</span>
+                  <select name="priority">
+                    <option>Low</option>
+                    <option selected>Medium</option>
+                    <option>High</option>
+                  </select>
+                </label>
+              </div>
+              <div class="two-col">
+                <label>
+                  <span>Budget</span>
+                  <input type="number" name="budget" min="0" step="100" value="1500" />
+                </label>
+                <label>
+                  <span>Progress %</span>
+                  <input type="number" name="progress" min="0" max="100" value="25" />
+                </label>
+              </div>
+              <label>
+                <span>Description</span>
+                <textarea name="description" rows="3" placeholder="Describe the initiative..."></textarea>
+              </label>
+              <button type="submit">Create project</button>
+            </form>
+          </div>
+        </aside>
+
+        <section class="panel main-panel">
+          <div class="hero-panel">
+            <div class="hero-header">
+              <p class="eyebrow">Full Stack Development</p>
+              <h2>Project 2</h2>
+            </div>
+            <div class="hero-copy">
+              <p>
+                Build a resilient backend and connect it with a clean, responsive frontend.
+                This deliverable focuses on structured API logic, reliable data flow,
+                and end-to-end product delivery.
+              </p>
+            </div>
+          </div>
+
+          <div class="list-header">
+            <h3>Active Projects</h3>
+            <span id="project-count-badge">0 items</span>
+          </div>
+          <div id="project-list" class="project-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
