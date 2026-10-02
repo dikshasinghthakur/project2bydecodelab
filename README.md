@@ -4,12 +4,13 @@ A full-stack project management dashboard built with Node.js and Express. It all
 
 ## Live Demo
 
-https://your-project-name.onrender.com
+https://project2bydecodelab.onrender.com/
 
 ## Features
 
 - Express backend with REST API routes
 - Responsive frontend dashboard
+- Search projects by title, owner, or description; filter by status and priority
 - Create, update, and delete projects
 - Project progress and budget tracking
 - Real-time summary cards for project status
