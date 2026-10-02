@@ -92,17 +92,43 @@
 
         <section class="panel main-panel">
           <div class="hero-panel">
-            <div class="hero-header">
-              <p class="eyebrow">Full Stack Development</p>
-              <h2>Project 2</h2>
+            <div class="hero-intro">
+              <div class="hero-header">
+                <p class="eyebrow">Workspace overview</p>
+                <h2>Projects at a glance</h2>
+              </div>
+              <div class="hero-copy">
+                <p>A live view of project momentum, ownership, and delivery.</p>
+              </div>
             </div>
-            <div class="hero-copy">
-              <p>
-                Build a resilient backend and connect it with a clean, responsive frontend.
-                This deliverable focuses on structured API logic, reliable data flow,
-                and end-to-end product delivery.
-              </p>
-            </div>
+            <aside class="portfolio-pulse" aria-label="Portfolio progress overview">
+              <div class="pulse-heading">
+                <div>
+                  <span class="pulse-label">Portfolio pulse</span>
+                  <strong id="average-progress">0%</strong>
+                </div>
+                <span class="pulse-caption">Average completion</span>
+              </div>
+              <div class="portfolio-progress-track" aria-hidden="true">
+                <span id="portfolio-progress-fill"></span>
+              </div>
+              <div class="status-breakdown">
+                <div class="status-breakdown-heading">
+                  <span>Status mix</span>
+                  <span id="status-mix-total">0 projects</span>
+                </div>
+                <div class="status-stack" role="img" aria-label="Project status breakdown">
+                  <span id="planning-segment" class="planning-segment"></span>
+                  <span id="progress-segment" class="progress-segment"></span>
+                  <span id="completed-segment" class="completed-segment"></span>
+                </div>
+                <div class="status-legend">
+                  <span><i class="planning-dot"></i>Planning <strong id="planning-count">0</strong></span>
+                  <span><i class="progress-dot"></i>In progress <strong id="progress-count">0</strong></span>
+                  <span><i class="completed-dot"></i>Completed <strong id="completed-count">0</strong></span>
+                </div>
+              </div>
+            </aside>
           </div>
 
           <div class="list-header">

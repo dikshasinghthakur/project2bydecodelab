@@ -11,6 +11,16 @@ const projectSearch = document.getElementById('project-search');
 const statusFilter = document.getElementById('status-filter');
 const priorityFilter = document.getElementById('priority-filter');
 const clearFiltersButton = document.getElementById('clear-filters');
+const averageProgress = document.getElementById('average-progress');
+const portfolioProgressFill = document.getElementById('portfolio-progress-fill');
+const statusMixTotal = document.getElementById('status-mix-total');
+const statusStack = document.querySelector('.status-stack');
+const planningSegment = document.getElementById('planning-segment');
+const progressSegment = document.getElementById('progress-segment');
+const completedSegment = document.getElementById('completed-segment');
+const planningCount = document.getElementById('planning-count');
+const progressCount = document.getElementById('progress-count');
+const completedCount = document.getElementById('completed-count');
 let allProjects = [];
 
 function showFormMessage(message, type = 'success') {
@@ -39,7 +49,34 @@ function getPriorityClass(priority) {
   return '';
 }
 
+function updatePortfolioPulse() {
+  const total = allProjects.length;
+  const counts = {
+    planning: allProjects.filter((project) => project.status === 'Planning').length,
+    inProgress: allProjects.filter((project) => project.status === 'In Progress').length,
+    completed: allProjects.filter((project) => project.status === 'Completed').length
+  };
+  const average = total
+    ? Math.round(allProjects.reduce((sum, project) => sum + Number(project.progress || 0), 0) / total)
+    : 0;
+
+  averageProgress.textContent = `${average}%`;
+  portfolioProgressFill.style.width = `${Math.min(100, average)}%`;
+  statusMixTotal.textContent = `${total} ${total === 1 ? 'project' : 'projects'}`;
+  planningCount.textContent = String(counts.planning);
+  progressCount.textContent = String(counts.inProgress);
+  completedCount.textContent = String(counts.completed);
+  planningSegment.style.width = `${total ? (counts.planning / total) * 100 : 0}%`;
+  progressSegment.style.width = `${total ? (counts.inProgress / total) * 100 : 0}%`;
+  completedSegment.style.width = `${total ? (counts.completed / total) * 100 : 0}%`;
+  statusStack.setAttribute(
+    'aria-label',
+    `Planning ${counts.planning}, in progress ${counts.inProgress}, completed ${counts.completed}`
+  );
+}
+
 function renderProjects(projects) {
+  updatePortfolioPulse();
   const inProgress = allProjects.filter((project) => project.status === 'In Progress').length;
   const completed = allProjects.filter((project) => project.status === 'Completed').length;
   const budgetTotal = allProjects.reduce((sum, project) => sum + Number(project.budget || 0), 0);

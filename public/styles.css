@@ -5,6 +5,9 @@
   --primary: #73b5ac;
   --primary-deep: #3d7f74;
   --accent: #c9e8af;
+  --status-planning: #c77855;
+  --status-active: #2c8175;
+  --status-completed: #829f48;
   --text: #173b42;
   --muted: #5d777a;
   --border: rgba(18, 67, 71, 0.12);
@@ -215,33 +218,11 @@ button, input, select, textarea {
   padding: 28px 26px;
   border: 1px solid rgba(45, 82, 83, 0.08);
   display: grid;
-  gap: 16px;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: 24px;
   margin-bottom: 30px;
-  min-height: 260px;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-panel::before,
-.hero-panel::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(131, 180, 136, 0.22);
-}
-
-.hero-panel::before {
-  width: 180px;
-  height: 180px;
-  right: -30px;
-  top: -40px;
-}
-
-.hero-panel::after {
-  width: 150px;
-  height: 150px;
-  left: -20px;
-  bottom: -30px;
+  min-height: 248px;
 }
 
 .hero-header,
@@ -272,6 +253,125 @@ button, input, select, textarea {
   font-size: 1.1rem;
   line-height: 1.7;
   color: rgba(23, 59, 66, 0.9);
+}
+
+.portfolio-pulse {
+  display: grid;
+  gap: 14px;
+  align-content: center;
+  min-width: 0;
+  padding-left: 24px;
+  border-left: 1px solid rgba(23, 59, 66, 0.18);
+}
+
+.pulse-heading,
+.status-breakdown-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pulse-heading > div {
+  display: grid;
+  gap: 3px;
+}
+
+.pulse-label,
+.pulse-caption,
+.status-breakdown-heading {
+  color: rgba(23, 59, 66, 0.78);
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.pulse-label {
+  text-transform: uppercase;
+}
+
+.pulse-heading strong {
+  color: var(--text);
+  font-size: 2.25rem;
+  line-height: 1;
+}
+
+.pulse-caption {
+  text-align: right;
+}
+
+.portfolio-progress-track,
+.status-stack {
+  display: flex;
+  width: 100%;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(23, 59, 66, 0.12);
+}
+
+.portfolio-progress-track span {
+  width: 0;
+  border-radius: inherit;
+  background: var(--status-active);
+  transition: width 300ms ease;
+}
+
+.status-breakdown {
+  display: grid;
+  gap: 9px;
+}
+
+.status-stack {
+  height: 8px;
+  gap: 2px;
+  background: transparent;
+}
+
+.status-stack span {
+  width: 0;
+  transition: width 300ms ease;
+}
+
+.planning-segment,
+.planning-dot {
+  background: var(--status-planning);
+}
+
+.progress-segment,
+.progress-dot {
+  background: var(--status-active);
+}
+
+.completed-segment,
+.completed-dot {
+  background: var(--status-completed);
+}
+
+.status-legend {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  color: rgba(23, 59, 66, 0.78);
+  font-size: 0.68rem;
+}
+
+.status-legend span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+}
+
+.status-legend i {
+  flex: 0 0 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.status-legend strong {
+  margin-left: auto;
+  color: var(--text);
 }
 
 .list-header {
@@ -443,6 +543,20 @@ button, input, select, textarea {
   }
 }
 
+@media (max-width: 1100px) {
+  .hero-panel {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    min-height: 0;
+  }
+
+  .portfolio-pulse {
+    padding: 18px 0 0;
+    border-left: 0;
+    border-top: 1px solid rgba(23, 59, 66, 0.18);
+  }
+}
+
 @media (max-width: 640px) {
   .page-shell {
     width: min(100% - 20px, 1300px);
@@ -458,7 +572,8 @@ button, input, select, textarea {
 
   .two-col,
   .metric-grid,
-  .project-filters {
+  .project-filters,
+  .status-legend {
     grid-template-columns: 1fr;
   }
 }
