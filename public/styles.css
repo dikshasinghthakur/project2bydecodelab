@@ -298,6 +298,49 @@ button, input, select, textarea {
   gap: 16px;
 }
 
+.project-filters {
+  display: grid;
+  grid-template-columns: minmax(180px, 1.6fr) repeat(2, minmax(130px, 1fr)) auto;
+  align-items: end;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.project-filter {
+  display: grid;
+  gap: 6px;
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.project-filter input,
+.project-filter select {
+  width: 100%;
+  min-width: 0;
+  height: 42px;
+  border: 1px solid rgba(25, 75, 80, 0.16);
+  border-radius: 8px;
+  padding: 0 11px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--text);
+}
+
+.clear-filters {
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid rgba(25, 75, 80, 0.16);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--primary-deep);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.clear-filters:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
 .project-card {
   background: rgba(255, 255, 255, 0.62);
   border: 1px solid rgba(14, 58, 66, 0.08);
@@ -414,7 +457,8 @@ button, input, select, textarea {
   }
 
   .two-col,
-  .metric-grid {
+  .metric-grid,
+  .project-filters {
     grid-template-columns: 1fr;
   }
 }

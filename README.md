@@ -1,10 +1,10 @@
 # Full Stack Project 2
 
-A full-stack project dashboard built with Node.js and Express to demonstrate API-driven project management. The app includes a responsive frontend, project analytics, and CRUD functionality for managing project records.
+A full-stack project management dashboard built with Node.js and Express. It allows users to track project status, budgets, priorities, and progress through a responsive dashboard and API-driven backend.
 
-## Demo
+## Live Demo
 
-Live demo: https://your-project-name.onrender.com
+https://your-project-name.onrender.com
 
 ## Features
 

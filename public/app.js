@@ -7,6 +7,11 @@ const inProgressCount = document.getElementById('in-progress');
 const completedProjects = document.getElementById('completed-projects');
 const totalBudget = document.getElementById('total-budget');
 const projectCountBadge = document.getElementById('project-count-badge');
+const projectSearch = document.getElementById('project-search');
+const statusFilter = document.getElementById('status-filter');
+const priorityFilter = document.getElementById('priority-filter');
+const clearFiltersButton = document.getElementById('clear-filters');
+let allProjects = [];
 
 function showFormMessage(message, type = 'success') {
   if (!formMessage) return;
@@ -35,25 +40,27 @@ function getPriorityClass(priority) {
 }
 
 function renderProjects(projects) {
-  if (!projects || !projects.length) {
-    projectList.innerHTML = '<p class="empty-state">No projects yet. Create one from the form.</p>';
-    totalProjects.textContent = '0';
-    inProgressCount.textContent = '0';
-    completedProjects.textContent = '0';
-    totalBudget.textContent = '$0';
-    projectCountBadge.textContent = '0 items';
-    return;
-  }
+  const inProgress = allProjects.filter((project) => project.status === 'In Progress').length;
+  const completed = allProjects.filter((project) => project.status === 'Completed').length;
+  const budgetTotal = allProjects.reduce((sum, project) => sum + Number(project.budget || 0), 0);
 
-  const inProgress = projects.filter((project) => project.status === 'In Progress').length;
-  const completed = projects.filter((project) => project.status === 'Completed').length;
-  const budgetTotal = projects.reduce((sum, project) => sum + Number(project.budget || 0), 0);
-
-  totalProjects.textContent = String(projects.length);
+  totalProjects.textContent = String(allProjects.length);
   inProgressCount.textContent = String(inProgress);
   completedProjects.textContent = String(completed);
   totalBudget.textContent = `$${budgetTotal.toLocaleString()}`;
-  projectCountBadge.textContent = `${projects.length} items`;
+  projectCountBadge.textContent = projects.length === allProjects.length
+    ? `${allProjects.length} items`
+    : `${projects.length} of ${allProjects.length} projects`;
+
+  if (!allProjects.length) {
+    projectList.innerHTML = '<p class="empty-state">No projects yet. Create one from the form.</p>';
+    return;
+  }
+
+  if (!projects.length) {
+    projectList.innerHTML = '<p class="empty-state">No projects match these filters.</p>';
+    return;
+  }
 
   projectList.innerHTML = projects
     .map((project) => {
@@ -99,11 +106,26 @@ function renderProjects(projects) {
     .join('');
 }
 
+function applyFilters() {
+  const query = projectSearch.value.trim().toLowerCase();
+  const selectedStatus = statusFilter.value;
+  const selectedPriority = priorityFilter.value;
+  const filteredProjects = allProjects.filter((project) => {
+    const searchableText = `${project.title} ${project.owner} ${project.description || ''}`.toLowerCase();
+    return searchableText.includes(query)
+      && (!selectedStatus || project.status === selectedStatus)
+      && (!selectedPriority || project.priority === selectedPriority);
+  });
+
+  renderProjects(filteredProjects);
+}
+
 async function fetchProjects() {
   try {
     const response = await fetch('/api/projects');
-    const projects = await response.json();
-    renderProjects(projects);
+    if (!response.ok) throw new Error('Unable to load projects');
+    allProjects = await response.json();
+    applyFilters();
   } catch (error) {
     projectList.innerHTML = '<p class="empty-state">Unable to load project data.</p>';
   }
@@ -177,6 +199,16 @@ projectList.addEventListener('click', async (event) => {
   if (action === 'delete') {
     deleteProject(id);
   }
+});
+
+projectSearch.addEventListener('input', applyFilters);
+statusFilter.addEventListener('change', applyFilters);
+priorityFilter.addEventListener('change', applyFilters);
+clearFiltersButton.addEventListener('click', () => {
+  projectSearch.value = '';
+  statusFilter.value = '';
+  priorityFilter.value = '';
+  applyFilters();
 });
 
 form.addEventListener('submit', createProject);

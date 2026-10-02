@@ -109,6 +109,31 @@
             <h3>Active Projects</h3>
             <span id="project-count-badge">0 items</span>
           </div>
+          <div class="project-filters">
+            <label class="project-filter">
+              <span>Search</span>
+              <input id="project-search" type="search" placeholder="Title, owner, or description" />
+            </label>
+            <label class="project-filter">
+              <span>Status</span>
+              <select id="status-filter">
+                <option value="">All statuses</option>
+                <option>Planning</option>
+                <option>In Progress</option>
+                <option>Completed</option>
+              </select>
+            </label>
+            <label class="project-filter">
+              <span>Priority</span>
+              <select id="priority-filter">
+                <option value="">All priorities</option>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+              </select>
+            </label>
+            <button id="clear-filters" class="clear-filters" type="button">Clear filters</button>
+          </div>
           <div id="project-list" class="project-list"></div>
         </section>
       </main>
